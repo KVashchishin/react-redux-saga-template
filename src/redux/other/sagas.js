@@ -26,6 +26,18 @@ export function* GET_DATA({ id }) {
   }
 }
 
+export function* UPDATE({ value }) {
+  yield put({
+    type: "other/SET_STATE",
+    payload: {
+      data: value,
+    },
+  });
+}
+
 export default function* rootSaga() {
-  yield all([takeEvery(actions.GET_DATA, GET_DATA)]);
+  yield all([
+    takeEvery(actions.GET_DATA, GET_DATA),
+    takeEvery(actions.UPDATE, UPDATE),
+  ]);
 }

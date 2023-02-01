@@ -16,11 +16,12 @@ const container = document.getElementById("root");
 const root = createRoot(container);
 const history = syncHistoryWithStore(browserHistory, store);
 
+// Suspense в майбутньому потрібно оновити лоадером
 root.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router history={history}>
-        <Suspense>
+        <Suspense> 
           <Routes>
             {pages.map(({ path, component }) => (
               <Route exact key={path} path={path} element={component} />
