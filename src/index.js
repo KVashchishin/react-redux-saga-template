@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 import reportWebVitals from "./reportWebVitals";
+import Layout from "./components/Layout";
 import "./index.css";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -21,14 +22,16 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <Router history={history}>
-        <Suspense> 
-          <Routes>
-            {pages.map(({ path, component }) => (
-              <Route exact key={path} path={path} element={component} />
-            ))}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </Suspense>
+        <Layout>
+          <Suspense>
+            <Routes>
+              {pages.map(({ path, component }) => (
+                <Route exact key={path} path={path} element={component} />
+              ))}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Suspense>
+        </Layout>
       </Router>
     </Provider>
   </React.StrictMode>
